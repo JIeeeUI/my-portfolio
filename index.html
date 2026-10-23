@@ -135,6 +135,32 @@
             </div>
 
         </main>
+        <div class="contact-button-wrapper">
+            <button id="open-contact" class="contact-btn" aria-haspopup="dialog" aria-controls="contact-modal">
+                My Contact
+            </button>
+        </div>
+
+        <!-- Contact 모달 창 (기본적으로 숨겨져 있음) -->
+        <div id="contact-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <div class="modal-content">
+                <button id="close-contact" class="close-btn" aria-label="닫기">&times;</button>
+                <h2 id="modal-title">Contact</h2>
+                <p>언제든지 편하게 연락해 주세요!</p>
+                
+                <div class="contact-links">
+                    <a href="mailto:wespace09@gmail.com" class="contact-item">
+                        <span class="icon">✉️</span> your_email@gmail.com
+                    </a>
+                    <a href="tel:010.7655.1752" class="contact-item">
+                        <span class="icon">📞</span> 010-7655-1752
+                    </a>
+                    <a href="https:///github.com/JIeeeUI/my-portfolio" target="_blank" rel="noopener noreferrer" class="contact-item">
+                        <span class="icon">💻</span> github.com/JIeeeUI/
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="script.js"></script>
