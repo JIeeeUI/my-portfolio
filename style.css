@@ -381,3 +381,10 @@ body {
     }
     .timeline-content:hover { transform: none; }
 }
+
+/* 기울임 + 볼드 강조 스타일 */
+.about-me strong em {
+    font-style: italic;
+    color: #4b5563; /* 대표 문장(파란색)과 구분되는 진한 회색 */
+    font-weight: 700; /* 확실한 볼드 처리 */
+}
