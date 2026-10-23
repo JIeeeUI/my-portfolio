@@ -1,13 +1,13 @@
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
 :root {
-    --bg-color: #f2f4f8;
+    --bg-color: #f8f9fa;
     --card-bg: #ffffff;
     --text-main: #1a1a1a;
     --text-sub: #595959;
     --primary-blue: #2563eb;
-    --primary-blue-light: #e8f0fe;
-    --line-color: #d1d5db;
+    --primary-blue-light: #eff6ff;
+    --line-color: #e5e7eb;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -16,95 +16,59 @@ body {
     font-family: 'Pretendard', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-main);
-    display: flex;
-    justify-content: center;
     min-height: 100vh;
-    margin: 0; /* 추가: 브라우저 기본 여백 제거 */
 }
 
+/* ==========================================
+   🖥️ 전체 레이아웃 (PC: 좌우 배치)
+   ========================================== */
 .app-container {
-    width: 100%;
     max-width: 1200px;
-    background-color: var(--bg-color); /* 변경: 배경을 흰색으로 (또는 var(--bg-color) 유지) */
+    margin: 0 auto;
     padding: 40px 20px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow: 0 0 20px rgba(0,0,0,0.05); /* 선택: 컨테이너에 그림자를 주어 입체감 */
+    gap: 40px;
+    align-items: flex-start; /* 사이드바가 위에서부터 시작하도록 */
 }
 
-.header {
-    width: 100%;
-    max-width: 800px;
-    margin-bottom: 30px;
-    text-align: left;
+/* --- 👈 왼쪽 사이드 바 (고정) 👈 --- */
+.sidebar {
+    width: 350px;
+    position: sticky; /* 스크롤을 따라 고정 */
+    top: 40px; /* 화면 상단에서 40px 떨어진 곳에 머무름 */
+    flex-shrink: 0;
 }
 
-.date { color: var(--text-sub); font-size: 0.9rem; margin-bottom: 5px; }
-.header h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 15px; }
-
-.target-audience {
-    font-size: 0.95rem;
-    color: var(--text-main);
-    margin-bottom: 15px;
-    background-color: var(--card-bg);
-    display: block;
-    padding: 15px;
-    border-radius: 8px;
-    border-left: 4px solid var(--primary-blue);
-    line-height: 1.5;
-    width: 100%;
-}
-
-.keywords {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 25px;
-}
-
-.keywords span {
-    font-size: 0.85rem;
-    color: var(--primary-blue);
-    background-color: var(--primary-blue-light);
-    padding: 4px 12px;
-    border-radius: 12px;
-    font-weight: 600;
-}
-
-/* About Me 섹션 */
+/* About Me (사이드바 내부) */
 .about-me {
     background-color: var(--card-bg);
-    padding: 25px;
-    border-radius: 16px;
-    margin-bottom: 40px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    width: 100%;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    border-top: 5px solid var(--primary-blue);
 }
 
 .about-me h2 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: var(--primary-blue);
-    margin-bottom: 15px;
-    border-bottom: 2px solid var(--primary-blue-light);
+    margin-bottom: 20px;
     padding-bottom: 10px;
-    display: block;
+    border-bottom: 2px solid var(--primary-blue-light);
 }
 
 .about-me ul {
     list-style: none;
-    padding: 0;
-    display: grid;
-    grid-template-columns: 1fr; /* 기본은 세로 1열 */
-    gap: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .about-me li {
     font-size: 0.95rem;
     line-height: 1.6;
     position: relative;
-    padding-left: 25px;
-    color: var(--text-main);
+    padding-left: 20px;
+    color: #333;
 }
 
 .about-me li::before {
@@ -116,61 +80,88 @@ body {
     font-weight: bold;
 }
 
-/* 제목 스타일 (파란색, 한 줄 차지) */
+/* 제목 스타일 (파란색, 줄바꿈) */
 .strength-title {
     color: var(--primary-blue);
-    display: block; /* 제목은 줄바꿈 되도록 */
+    display: block;
     margin-bottom: 5px;
-    font-weight: bold;
+    font-weight: 700;
+    font-size: 1rem;
 }
 
-/* 본문 강조 스타일 (기울임+볼드, 줄바꿈 없음) */
+/* 본문 강조 스타일 (기울임+볼드) */
 .about-me li strong em {
     font-style: italic;
     color: #4b5563;
     font-weight: 700;
-    display: inline; /* 본문은 이어지도록 */
 }
 
-/* 타임라인 기본 구조 */
-.timeline {
-    position: relative;
-    padding-left: 20px;
-    width: 100%;
-    max-width: 800px; /* 타임라인 최대 너비 제한 */
-    margin: 0 auto;
+/* --- 👉 오른쪽 메인 컨텐츠 👉 --- */
+.main-content {
+    flex: 1;
+    min-width: 0;
 }
+
+/* 헤더 */
+.header { margin-bottom: 40px; }
+.date { color: var(--text-sub); font-size: 0.9rem; margin-bottom: 5px; font-weight: 600;}
+.header h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 15px; letter-spacing: -1px;}
+
+.target-audience {
+    font-size: 0.95rem;
+    color: var(--text-main);
+    margin-bottom: 20px;
+    background-color: var(--card-bg);
+    display: block;
+    padding: 15px 20px;
+    border-radius: 12px;
+    border-left: 4px solid var(--primary-blue);
+    line-height: 1.6;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+}
+
+.keywords { display: flex; flex-wrap: wrap; gap: 8px; }
+.keywords span {
+    font-size: 0.85rem;
+    color: var(--primary-blue);
+    background-color: var(--primary-blue-light);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+/* 타임라인 */
+.timeline { position: relative; padding-left: 20px; margin-bottom: 40px;}
 
 .timeline::before {
     content: '';
     position: absolute;
     left: 4px;
-    top: 25px; 
+    top: 25px;
     bottom: 10px;
     width: 2px;
     background-color: var(--line-color);
-    z-index: 1; 
+    z-index: 1;
 }
 
-.timeline-item { position: relative; margin-bottom: 20px; }
+.timeline-item { position: relative; margin-bottom: 25px; }
 
 .timeline-marker {
     position: absolute;
     left: -20px;
-    top: 24px; 
-    width: 12px;
-    height: 12px;
+    top: 24px;
+    width: 14px;
+    height: 14px;
     border-radius: 50%;
     background-color: var(--bg-color);
-    border: 2px solid var(--primary-blue);
-    z-index: 2; 
+    border: 3px solid var(--primary-blue);
+    z-index: 2;
     transition: all 0.3s ease;
 }
 
 .timeline-item:has(.active) .timeline-marker,
 .timeline-marker.active {
     background-color: var(--primary-blue);
-    border-color: var(--primary-blue);
     box-shadow: 0 0 0 4px var(--primary-blue-light);
 }
 
@@ -180,16 +171,17 @@ body {
     padding: 25px;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
     outline: none;
 }
 
-.timeline-content:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+.timeline-content:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
 .timeline-content:focus-visible { outline: 3px solid var(--primary-blue); outline-offset: 2px; }
 
 .timeline-content.active {
     background-color: var(--primary-blue);
     color: #ffffff;
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
 }
 
 .item-header {
@@ -199,126 +191,73 @@ body {
     margin-bottom: 10px;
 }
 
-.item-header h3 { font-size: 1.2rem; font-weight: 600; }
+.item-header h3 { font-size: 1.25rem; font-weight: 700; }
 
 .item-header .time {
     font-size: 0.9rem;
     color: var(--text-sub);
     margin-left: auto;
     margin-right: 15px;
+    font-weight: 500;
 }
-.timeline-content.active .item-header .time { color: #e2e8f0; }
+.timeline-content.active .item-header .time { color: #bfdbfe; }
 
-.arrow { font-size: 0.8rem; transition: transform 0.3s ease; color: var(--text-sub); }
+.arrow { font-size: 0.9rem; transition: transform 0.3s ease; color: var(--text-sub); }
 .timeline-content.active .arrow { color: #ffffff; }
 
 .summary { font-size: 1rem; color: var(--text-sub); transition: color 0.3s ease; }
-.timeline-content.active .summary { color: #f1f5f9; }
+.timeline-content.active .summary { color: #eff6ff; }
 
 .item-details {
     display: none;
-    margin-top: 15px;
-    padding-top: 15px;
+    margin-top: 20px;
+    padding-top: 20px;
     border-top: 1px solid #eee;
     font-size: 0.95rem;
-    line-height: 1.6;
+    line-height: 1.7;
 }
-.timeline-content.active .item-details { border-top: 1px solid rgba(255, 255, 255, 0.3); }
+.timeline-content.active .item-details { border-top: 1px solid rgba(255, 255, 255, 0.2); }
 
-.item-details p { margin-bottom: 10px; }
-.item-details strong { font-weight: 600; }
+.item-details p { margin-bottom: 12px; }
+.item-details strong { font-weight: 700; }
 
 .cloud-link {
-    margin-top: 15px !important;
-    padding: 12px;
+    margin-top: 20px !important;
+    padding: 15px;
     background-color: rgba(255, 255, 255, 0.15);
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 0.9rem;
 }
 
-/* Contact 버튼 */
-.contact-button-wrapper {
-    display: flex;
-    justify-content: center;
-    margin-top: 40px;
-    margin-bottom: 40px;
-    width: 100%;
-}
-
-.contact-btn {
-    background-color: #51b8a4;
-    color: white;
-    font-size: 1.1rem;
-    font-weight: 600;
-    padding: 15px 50px;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(81, 184, 164, 0.3);
-    transition: all 0.3s ease;
-    font-family: inherit;
-}
-
-.contact-btn:hover, .contact-btn:focus-visible {
-    background-color: #3fa392;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(81, 184, 164, 0.4);
-    outline: none;
-}
-
-/* 모달 창 */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.modal.show { display: flex; opacity: 1; }
-
-.modal-content {
+/* Contact 섹션 (오른쪽 하단) */
+.contact-section {
     background-color: var(--card-bg);
     padding: 30px;
     border-radius: 20px;
-    width: 90%;
-    max-width: 400px;
-    position: relative;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    transform: translateY(20px);
-    transition: transform 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
 }
 
-.modal.show .modal-content { transform: translateY(0); }
+.contact-section h2 {
+    font-size: 1.3rem;
+    color: var(--text-main);
+    margin-bottom: 8px;
+}
 
-.close-btn {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
+.contact-section p {
+    font-size: 0.95rem;
     color: var(--text-sub);
+    margin-bottom: 20px;
 }
 
-.modal-content h2 { color: var(--primary-blue); margin-bottom: 10px; }
-.modal-content p { font-size: 0.9rem; color: var(--text-sub); margin-bottom: 20px; }
+.contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
 
-.contact-links { display: flex; flex-direction: column; gap: 15px; }
-
-.contact-item {
+.contact-links a {
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 10px;
     padding: 15px;
     background-color: var(--bg-color);
@@ -326,15 +265,16 @@ body {
     text-decoration: none;
     color: var(--text-main);
     font-weight: 600;
-    transition: background-color 0.2s, transform 0.2s;
+    transition: all 0.2s;
 }
 
-.contact-item:hover {
+.contact-links a:hover {
     background-color: var(--primary-blue-light);
     color: var(--primary-blue);
-    transform: translateY(-2px);
+    transform: translateX(5px);
 }
 
+/* 접근성: 스킵 링크 */
 .skip-link {
     position: absolute;
     top: -40px;
@@ -347,41 +287,30 @@ body {
 }
 .skip-link:focus { top: 0; }
 
-/* ==========================================
-   💻 큰 모니터 (1200px 이상) - 넓게 펼치기
-   ========================================== */
-@media (min-width: 1024px) {
-    /* PC에서는 About Me 강점들을 3열로 나란히 배치 */
-    .about-me ul {
-        grid-template-columns: repeat(3, 1fr);
+/* 📱 태블릿 및 모바일 (1024px 이하) - 세로 배치 */
+@media (max-width: 1024px) {
+    .app-container {
+        flex-direction: column; /* 위아래로 배치 */
+        padding: 30px 20px;
     }
     
-    /* 타임라인을 조금 더 넓게 */
-    .timeline {
-        max-width: 900px;
+    .sidebar {
+        width: 100%;
+        position: static; /* 고정 해제 */
+        margin-bottom: 30px;
     }
+
+    .header h1 { font-size: 2.2rem; }
 }
 
-/* ==========================================
-   📱 태블릿 및 모바일 (768px 이하) - 좁게 접기
-   ========================================== */
-@media (max-width: 768px) {
-    .app-container { padding: 30px 15px; }
-    .header h1 { font-size: 2rem; }
-    .about-me ul { grid-template-columns: 1fr; } /* 강점 세로로 */
+@media (max-width: 600px) {
+    .app-container { padding: 20px 15px; }
+    .header h1 { font-size: 1.8rem; }
     
-    .contact-btn { width: 100%; } /* 모바일에서 버튼 꽉 차게 */
-    .modal-content { width: 95%; padding: 20px; }
-    .contact-item { font-size: 0.9rem; padding: 12px; }
-}
-
-/* ==========================================
-   📱 작은 모바일 (480px 이하) - 최적화
-   ========================================== */
-@media (max-width: 480px) {
-    .header h1 { font-size: 1.6rem; }
-    .timeline-content { padding: 15px; }
+    .about-me, .contact-section { padding: 20px; }
+    .timeline-content { padding: 20px; }
     .item-header h3 { font-size: 1.1rem; }
+    .contact-links a { font-size: 0.9rem; }
 }
 
 /* T01-C22: 움직임 최소화 선호 사용자 대응 */
@@ -390,11 +319,4 @@ body {
         transition: none !important;
     }
     .timeline-content:hover { transform: none; }
-}
-
-/* 기울임 + 볼드 강조 스타일 */
-.about-me strong em {
-    font-style: italic;
-    color: #4b5563; /* 대표 문장(파란색)과 구분되는 진한 회색 */
-    font-weight: 700; /* 확실한 볼드 처리 */
 }
