@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>최지의 | My Timeline</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 접근성을 위한 스킵 링크 -->
+    <a href="#main-content" class="skip-link">본문으로 바로가기</a>
+
+    <div class="app-container">
+        <header class="header">
+            <p class="date">My Journey to Cloud</p>
+            <h1>Timeline</h1>
+            <!-- 키워드 태그 -->
+            <div class="keywords">
+                <span>#Network_Security</span>
+                <span>#Global_Experience</span>
+                <span>#Cloud_Engineer</span>
+            </div>
+        </header>
+
+        <main id="main-content" class="timeline">
+            
+            <!-- 1. 사진영상학과 -->
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content" tabindex="0" role="button" aria-expanded="false">
+                    <div class="item-header">
+                        <h3>사진영상학과</h3>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <p class="summary">시각적 사고와 사용자 경험의 기초</p>
+                    <div class="item-details">
+                        <p><strong>배움:</strong> 사람들이 정보를 어떻게 받아들이고 시각적으로 소통하는지에 대한 이해를 바탕으로 기획력을 길렀습니다.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. 의류회사 재고 관리 -->
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content" tabindex="0" role="button" aria-expanded="false">
+                    <div class="item-header">
+                        <h3>의류회사 재고 관리</h3>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <p class="summary">실무 데이터 관리 및 비즈니스 프로세스 이해</p>
+                    <div class="item-details">
+                        <p><strong>경험:</strong> 실제 비즈니스 현장에서 데이터가 어떻게 흐르고 관리되는지 체득하며, 클라우드 아키텍처 설계의 기초가 되는 데이터 이해도를 높였습니다.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. 네트워크 보안 엔지니어 (핵심) -->
+            <div class="timeline-item">
+                <div class="timeline-marker active"></div>
+                <div class="timeline-content active" tabindex="0" role="button" aria-expanded="true">
+                    <div class="item-header">
+                        <h3>Network Security Engineer</h3>
+                        <span class="time">2년 4개월</span>
+                        <span class="arrow">▲</span>
+                    </div>
+                    <p class="summary">VPN 및 방화벽 인프라 운영</p>
+                    <!-- 기본적으로 열려있는 상태 (디자인 예시처럼 파란색) -->
+                    <div class="item-details" style="display: block;">
+                        <p><strong>상황:</strong> 기업의 보안 정책을 유지해야 하는 상황</p>
+                        <p><strong>행동:</strong> 복잡한 네트워크 흐름 분석 및 취약점 사전 차단 프로세스 구축</p>
+                        <p><strong>결과:</strong> 안정적인 네트워크 환경 유지 및 보안 사고 방지</p>
+                        <p class="cloud-link"><strong>☁️ 클라우드 연결:</strong> 온프레미스 보안 경험을 바탕으로 클라우드의 VPC, 보안 그룹, IAM 설정에 대한 높은 이해도를 갖춤.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. 호주 워킹홀리데이 -->
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content" tabindex="0" role="button" aria-expanded="false">
+                    <div class="item-header">
+                        <h3>호주 워킹홀리데이</h3>
+                        <span class="time">2년</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <p class="summary">글로벌 적응력과 커뮤니케이션</p>
+                    <div class="item-details">
+                        <p><strong>경험:</strong> 낯선 환경에서 다양한 배경의 사람들과 소통하며 유연한 문제 해결 능력을 갖추었습니다. 이는 글로벌 클라우드 환경을 이해하는 밑거름이 됩니다.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. 임베디드 SW & AI -->
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content" tabindex="0" role="button" aria-expanded="false">
+                    <div class="item-header">
+                        <h3>임베디드 SW & AI</h3>
+                        <span class="time">현재</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <p class="summary">미래 지향적 기술의 융합</p>
+                    <div class="item-details">
+                        <p><strong>배움:</strong> 하드웨어 제어와 AI 기술을 학습하며, 클라우드와 엣지(Edge) 기기가 연동되는 미래 지향적 인프라에 대한 시야를 넓히고 있습니다.</p>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
