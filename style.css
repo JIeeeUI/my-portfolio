@@ -22,7 +22,7 @@ body {
    🖥️ PC 화면 레이아웃 (사이드바 - 메인 - 사이드바)
    ========================================== */
 .app-container {
-    max-width: 1400px; /* 3단 배치를 위해 넓게 */
+    max-width: 1400px;
     margin: 0 auto;
     padding: 40px 20px;
     display: flex;
@@ -36,12 +36,14 @@ body {
     position: sticky;
     top: 40px;
     flex-shrink: 0;
+    order: 1; /* PC에서 왼쪽 첫 번째 */
 }
 
-/* 중앙 메인 컨텐츠 */
+/* 중앙 메인 컨텐츠 (헤더 + 카드 그리드) */
 .main-content {
     flex: 1;
     min-width: 0;
+    order: 2; /* PC에서 가운데 */
 }
 
 /* 오른쪽 사이드바 (Contact) */
@@ -50,6 +52,7 @@ body {
     position: sticky;
     top: 40px;
     flex-shrink: 0;
+    order: 3; /* PC에서 오른쪽 마지막 */
 }
 
 /* ==========================================
@@ -97,33 +100,33 @@ body {
 .strength-title { color: var(--primary-blue); display: block; margin-bottom: 5px; font-weight: 700; font-size: 0.95rem; }
 .about-me li strong em { font-style: italic; color: #4b5563; font-weight: 700; }
 
-/* Contact 내용 (가로 3개 배치 적용) */
+/* Contact 내용 (가로 3개 배치) */
 .contact-section h2 { font-size: 1.2rem; color: var(--text-main); margin-bottom: 8px; }
 .contact-section p { font-size: 0.85rem; color: var(--text-sub); margin-bottom: 20px; }
 
 .contact-links { 
     display: flex; 
-    flex-direction: row; /* 가로 배치 */
+    flex-direction: row;
     justify-content: space-between; 
     gap: 8px; 
-    flex-wrap: wrap; /* 좁아지면 다음 줄로 넘어감 */
+    flex-wrap: wrap;
 }
 
 .contact-links a {
     display: flex; 
     align-items: center; 
     justify-content: center; 
-    flex: 1; /* 3개가 동일한 너비를 차지하도록 설정 */
+    flex: 1;
     min-width: 80px; 
     padding: 12px 8px;
     background-color: var(--bg-color); 
     border-radius: 10px;
     text-decoration: none; 
     color: var(--text-main);
-    font-size: 0.75rem; /* 가로 배치 시 글씨가 넘치지 않게 크기 조정 */
+    font-size: 0.75rem;
     font-weight: 600; 
     transition: all 0.2s;
-    word-break: break-all; /* 이메일 주소가 길면 줄바꿈 */
+    word-break: break-all;
 }
 
 .contact-links a:hover { 
@@ -137,7 +140,7 @@ body {
    ========================================== */
 .card-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 가로 2열 */
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
 }
 
@@ -153,7 +156,6 @@ body {
 
 .grid-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
 
-/* 핵심 카드 (네트워크 보안) 강조 */
 .grid-card.highlight {
     border: 2px solid var(--primary-blue);
     background-color: #f8fbff;
@@ -210,25 +212,46 @@ body {
 .skip-link:focus { top: 0; }
 
 /* ==========================================
-   📱 반응형 (1024px 이하)
+   📱 반응형 (1024px 이하) - 순서 재배치 핵심!
    ========================================== */
 @media (max-width: 1024px) {
     .app-container {
-        flex-direction: column;
+        flex-direction: column; /* 1열로 쌓기 */
         padding: 30px 20px;
         gap: 20px;
     }
 
-    /* 모바일 순서 재배치 (헤더 -> 강점 -> 카드 -> 컨택트) */
-    .header { order: 1; width: 100%; }
-    .sidebar-left { order: 2; width: 100%; position: static; margin-top: 10px; }
-    .main-content { display: contents; } /* main 태그 무시 */
-    .card-grid { order: 3; width: 100%; }
-    .sidebar-right { order: 4; width: 100%; position: static; }
+    /* 👇 여기서 순서를 강제로 지정합니다 👇 */
     
-    /* 태블릿에서는 가로 2개 유지하되, 좁아지면 1개로 */
+    /* 1. 메인 컨텐츠 안의 '헤더'를 가장 위로 */
+    .header {
+        order: 1;
+        width: 100%;
+    }
+    
+    /* 2. 'My Core Strengths' 사이드바를 두 번째로 (헤더 아래, 카드 위) */
+    .sidebar-left {
+        order: 2;
+        width: 100%;
+        position: static; /* 고정 해제 */
+    }
+
+    /* 3. 메인 컨텐츠 안의 '카드 그리드'를 세 번째로 */
     .card-grid {
-        grid-template-columns: repeat(2, 1fr);
+        order: 3;
+        width: 100%;
+    }
+
+    /* 4. 'Contact' 사이드바를 맨 마지막으로 */
+    .sidebar-right {
+        order: 4;
+        width: 100%;
+        position: static; /* 고정 해제 */
+    }
+
+    /* 메인 컨텐츠는 순서에 관여하지 않도록 내용물만 남김 */
+    .main-content {
+        display: contents;
     }
 }
 
@@ -236,14 +259,13 @@ body {
     .app-container { padding: 20px 15px; }
     .header h1 { font-size: 1.8rem; }
     
-    /* 모바일에서는 카드를 1열(세로)로 변경하여 한눈에 보기 쉽게 */
+    /* 모바일에서는 카드를 1열(세로)로 변경 */
     .card-grid {
         grid-template-columns: 1fr;
     }
     
     .about-me, .contact-section, .grid-card { padding: 20px; }
     
-    /* 모바일에서는 Contact 링크가 너무 좁아지지 않게 처리 */
     .contact-links a {
         font-size: 0.8rem;
         padding: 10px;
