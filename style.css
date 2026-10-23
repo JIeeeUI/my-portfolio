@@ -97,17 +97,40 @@ body {
 .strength-title { color: var(--primary-blue); display: block; margin-bottom: 5px; font-weight: 700; font-size: 0.95rem; }
 .about-me li strong em { font-style: italic; color: #4b5563; font-weight: 700; }
 
-/* Contact 내용 */
+/* Contact 내용 (가로 3개 배치 적용) */
 .contact-section h2 { font-size: 1.2rem; color: var(--text-main); margin-bottom: 8px; }
 .contact-section p { font-size: 0.85rem; color: var(--text-sub); margin-bottom: 20px; }
-.contact-links { display: flex; flex-direction: column; gap: 10px; }
-.contact-links a {
-    display: flex; align-items: center; gap: 8px; padding: 12px;
-    background-color: var(--bg-color); border-radius: 10px;
-    text-decoration: none; color: var(--text-main);
-    font-size: 0.85rem; font-weight: 600; transition: all 0.2s;
+
+.contact-links { 
+    display: flex; 
+    flex-direction: row; /* 가로 배치 */
+    justify-content: space-between; 
+    gap: 8px; 
+    flex-wrap: wrap; /* 좁아지면 다음 줄로 넘어감 */
 }
-.contact-links a:hover { background-color: var(--primary-blue-light); color: var(--primary-blue); transform: translateX(3px); }
+
+.contact-links a {
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    flex: 1; /* 3개가 동일한 너비를 차지하도록 설정 */
+    min-width: 80px; 
+    padding: 12px 8px;
+    background-color: var(--bg-color); 
+    border-radius: 10px;
+    text-decoration: none; 
+    color: var(--text-main);
+    font-size: 0.75rem; /* 가로 배치 시 글씨가 넘치지 않게 크기 조정 */
+    font-weight: 600; 
+    transition: all 0.2s;
+    word-break: break-all; /* 이메일 주소가 길면 줄바꿈 */
+}
+
+.contact-links a:hover { 
+    background-color: var(--primary-blue-light); 
+    color: var(--primary-blue); 
+    transform: translateY(-2px); 
+}
 
 /* ==========================================
    🃏 중앙 카드 그리드 (가로 2개, 세로 3개)
@@ -219,6 +242,12 @@ body {
     }
     
     .about-me, .contact-section, .grid-card { padding: 20px; }
+    
+    /* 모바일에서는 Contact 링크가 너무 좁아지지 않게 처리 */
+    .contact-links a {
+        font-size: 0.8rem;
+        padding: 10px;
+    }
 }
 
 /* 움직임 최소화 선호 사용자 대응 */
