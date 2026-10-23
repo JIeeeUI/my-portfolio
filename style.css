@@ -117,10 +117,20 @@ body {
     font-weight: bold;
 }
 
-.about-me li strong {
+/* 제목 스타일 (파란색, 한 줄 차지) */
+.strength-title {
     color: var(--primary-blue);
-    display: block;
-    margin-bottom: 3px;
+    display: block; /* 제목은 줄바꿈 되도록 */
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* 본문 강조 스타일 (기울임+볼드, 줄바꿈 없음) */
+.about-me li strong em {
+    font-style: italic;
+    color: #4b5563;
+    font-weight: 700;
+    display: inline; /* 본문은 이어지도록 */
 }
 
 /* 타임라인 기본 구조 */
