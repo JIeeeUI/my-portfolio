@@ -1,0 +1,182 @@
+/* 기본 설정 및 폰트 */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+:root {
+    --bg-color: #f2f4f8; /* 예시와 비슷한 연한 회색 배경 */
+    --card-bg: #ffffff;
+    --text-main: #1a1a1a;
+    --text-sub: #8e8e93;
+    --primary-blue: #4a90e2; /* 예시의 파란색 */
+    --primary-blue-light: #e8f0fe;
+    --line-color: #d1d5db;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Pretendard', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* 앱 컨테이너 (모바일 화면 느낌) */
+.app-container {
+    width: 100%;
+    max-width: 480px;
+    background-color: var(--bg-color);
+    padding: 40px 20px;
+}
+
+/* 헤더 영역 */
+.header { margin-bottom: 30px; }
+.date { color: var(--text-sub); font-size: 0.9rem; margin-bottom: 5px; }
+.header h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 15px; }
+.keywords span {
+    display: inline-block;
+    font-size: 0.8rem;
+    color: var(--primary-blue);
+    background-color: var(--primary-blue-light);
+    padding: 4px 8px;
+    border-radius: 12px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+/* 타임라인 구조 */
+.timeline {
+    position: relative;
+    padding-left: 20px;
+}
+
+/* 세로 선 그리기 */
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 4px; /* 마커 중앙에 맞춤 */
+    top: 10px;
+    bottom: 10px;
+    width: 2px;
+    background-color: var(--line-color);
+}
+
+/* 개별 타임라인 아이템 */
+.timeline-item {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+/* 동그라미 마커 */
+.timeline-marker {
+    position: absolute;
+    left: -20px; /* 선 위치에 맞춤 */
+    top: 24px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--bg-color);
+    border: 2px solid var(--primary-blue);
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+/* 활성화된 마커 (예시처럼 꽉 찬 파란색) */
+.timeline-item:has(.active) .timeline-marker,
+.timeline-marker.active {
+    background-color: var(--primary-blue);
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 4px var(--primary-blue-light); /* 파란색 번짐 효과 */
+}
+
+/* 카드 내용 */
+.timeline-content {
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+    outline: none;
+}
+
+/* 활성화된 카드 (예시처럼 파란색 배경) */
+.timeline-content.active {
+    background-color: var(--primary-blue);
+    color: white;
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+}
+
+/* 카드 헤더 (제목 + 화살표) */
+.item-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.item-header h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.item-header .time {
+    font-size: 0.85rem;
+    color: var(--text-sub);
+    margin-left: auto;
+    margin-right: 10px;
+}
+.timeline-content.active .item-header .time { color: rgba(255, 255, 255, 0.8); }
+
+.arrow {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+    color: var(--text-sub);
+}
+.timeline-content.active .arrow { color: white; }
+
+/* 요약 텍스트 */
+.summary {
+    font-size: 0.9rem;
+    color: var(--text-sub);
+    transition: color 0.3s ease;
+}
+.timeline-content.active .summary { color: rgba(255, 255, 255, 0.9); }
+
+/* 세부 내용 (기본적으로 숨김) */
+.item-details {
+    display: none;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+.timeline-content.active .item-details {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.item-details p { margin-bottom: 8px; }
+.item-details strong { font-weight: 600; }
+
+/* 클라우드 연결점 강조 */
+.cloud-link {
+    margin-top: 12px !important;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    font-size: 0.85rem;
+}
+
+/* 접근성: 스킵 링크 */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary-blue);
+    color: white;
+    padding: 8px;
+    z-index: 100;
+}
+.skip-link:focus { top: 0; }
