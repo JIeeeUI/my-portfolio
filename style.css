@@ -19,19 +19,18 @@ body {
     display: flex;
     justify-content: center;
     min-height: 100vh;
+    margin: 0; /* 추가: 브라우저 기본 여백 제거 */
 }
 
-/* ==========================================
-   🖥️ PC / 노트북 화면 (기본 레이아웃)
-   ========================================== */
 .app-container {
     width: 100%;
-    max-width: 1200px; /* 큰 모니터에서도 너무 넓어지지 않게 제한 */
-    background-color: var(--bg-color);
+    max-width: 1200px;
+    background-color: var(--bg-color); /* 변경: 배경을 흰색으로 (또는 var(--bg-color) 유지) */
     padding: 40px 20px;
     display: flex;
     flex-direction: column;
-    align-items: center; /* 중앙 정렬 */
+    align-items: center;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05); /* 선택: 컨테이너에 그림자를 주어 입체감 */
 }
 
 .header {
@@ -146,10 +145,11 @@ body {
     content: '';
     position: absolute;
     left: 4px;
-    top: 10px;
+    top: 25px; 
     bottom: 10px;
     width: 2px;
     background-color: var(--line-color);
+    z-index: 1; 
 }
 
 .timeline-item { position: relative; margin-bottom: 20px; }
@@ -157,13 +157,13 @@ body {
 .timeline-marker {
     position: absolute;
     left: -20px;
-    top: 24px;
+    top: 24px; 
     width: 12px;
     height: 12px;
     border-radius: 50%;
     background-color: var(--bg-color);
     border: 2px solid var(--primary-blue);
-    z-index: 2;
+    z-index: 2; 
     transition: all 0.3s ease;
 }
 
