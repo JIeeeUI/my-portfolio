@@ -54,3 +54,35 @@ document.addEventListener('DOMContentLoaded', () => {
         // 만약 클릭한 항목이 원래 열려있던 상태라면, 1번 로직에 의해 그냥 닫힌 상태로 유지됨.
     }
 });
+    // ==========================================
+    // Contact 모달 창 열기/닫기 기능
+    // ==========================================
+    const openBtn = document.getElementById('open-contact');
+    const closeBtn = document.getElementById('close-contact');
+    const modal = document.getElementById('contact-modal');
+
+    if (openBtn && closeBtn && modal) {
+        // 1. 버튼 클릭 시 모달 열기
+        openBtn.addEventListener('click', () => {
+            modal.classList.add('show');
+        });
+
+        // 2. X 버튼 클릭 시 모달 닫기
+        closeBtn.addEventListener('click', () => {
+            modal.classList.remove('show');
+        });
+
+        // 3. 모달 바깥 배경 클릭 시 모달 닫기
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('show');
+            }
+        });
+
+        // 4. 키보드 ESC 누르면 닫기
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('show')) {
+                modal.classList.remove('show');
+            }
+        });
+    }
