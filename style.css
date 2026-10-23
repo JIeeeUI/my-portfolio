@@ -1,12 +1,11 @@
-/* 기본 설정 및 폰트 */
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
 :root {
-    --bg-color: #f2f4f8; /* 예시와 비슷한 연한 회색 배경 */
+    --bg-color: #f2f4f8;
     --card-bg: #ffffff;
     --text-main: #1a1a1a;
-    --text-sub: #8e8e93;
-    --primary-blue: #4a90e2; /* 예시의 파란색 */
+    --text-sub: #595959;
+    --primary-blue: #2563eb;
     --primary-blue-light: #e8f0fe;
     --line-color: #d1d5db;
 }
@@ -22,172 +21,66 @@ body {
     min-height: 100vh;
 }
 
-/* 앱 컨테이너 (모바일 화면 느낌) */
+/* ==========================================
+   🖥️ PC / 노트북 화면 (기본 레이아웃)
+   ========================================== */
 .app-container {
     width: 100%;
-    max-width: 480px;
+    max-width: 1200px; /* 큰 모니터에서도 너무 넓어지지 않게 제한 */
     background-color: var(--bg-color);
     padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 중앙 정렬 */
 }
 
-/* 헤더 영역 */
-.header { margin-bottom: 30px; }
+.header {
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
 .date { color: var(--text-sub); font-size: 0.9rem; margin-bottom: 5px; }
-.header h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 15px; }
+.header h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 15px; }
+
+.target-audience {
+    font-size: 0.95rem;
+    color: var(--text-main);
+    margin-bottom: 15px;
+    background-color: var(--card-bg);
+    display: block;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-blue);
+    line-height: 1.5;
+    width: 100%;
+}
+
+.keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 25px;
+}
+
 .keywords span {
-    display: inline-block;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     color: var(--primary-blue);
     background-color: var(--primary-blue-light);
-    padding: 4px 8px;
+    padding: 4px 12px;
     border-radius: 12px;
-    margin-right: 5px;
-    margin-bottom: 5px;
-}
-
-/* 타임라인 구조 */
-.timeline {
-    position: relative;
-    padding-left: 20px;
-}
-
-/* 세로 선 그리기 */
-.timeline::before {
-    content: '';
-    position: absolute;
-    left: 4px; /* 마커 중앙에 맞춤 */
-    top: 10px;
-    bottom: 10px;
-    width: 2px;
-    background-color: var(--line-color);
-}
-
-/* 개별 타임라인 아이템 */
-.timeline-item {
-    position: relative;
-    margin-bottom: 20px;
-}
-
-/* 동그라미 마커 */
-.timeline-marker {
-    position: absolute;
-    left: -20px; /* 선 위치에 맞춤 */
-    top: 24px;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: var(--bg-color);
-    border: 2px solid var(--primary-blue);
-    z-index: 2;
-    transition: all 0.3s ease;
-}
-
-/* 활성화된 마커 (예시처럼 꽉 찬 파란색) */
-.timeline-item:has(.active) .timeline-marker,
-.timeline-marker.active {
-    background-color: var(--primary-blue);
-    border-color: var(--primary-blue);
-    box-shadow: 0 0 0 4px var(--primary-blue-light); /* 파란색 번짐 효과 */
-}
-
-/* 카드 내용 */
-.timeline-content {
-    background-color: var(--card-bg);
-    border-radius: 16px;
-    padding: 20px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
-    outline: none;
-}
-
-/* 활성화된 카드 (예시처럼 파란색 배경) */
-.timeline-content.active {
-    background-color: var(--primary-blue);
-    color: white;
-    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
-}
-
-/* 카드 헤더 (제목 + 화살표) */
-.item-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 8px;
-}
-
-.item-header h3 {
-    font-size: 1.1rem;
     font-weight: 600;
 }
 
-.item-header .time {
-    font-size: 0.85rem;
-    color: var(--text-sub);
-    margin-left: auto;
-    margin-right: 10px;
-}
-.timeline-content.active .item-header .time { color: rgba(255, 255, 255, 0.8); }
-
-.arrow {
-    font-size: 0.8rem;
-    transition: transform 0.3s ease;
-    color: var(--text-sub);
-}
-.timeline-content.active .arrow { color: white; }
-
-/* 요약 텍스트 */
-.summary {
-    font-size: 0.9rem;
-    color: var(--text-sub);
-    transition: color 0.3s ease;
-}
-.timeline-content.active .summary { color: rgba(255, 255, 255, 0.9); }
-
-/* 세부 내용 (기본적으로 숨김) */
-.item-details {
-    display: none;
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px solid #eee;
-    font-size: 0.9rem;
-    line-height: 1.5;
-}
-.timeline-content.active .item-details {
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.item-details p { margin-bottom: 8px; }
-.item-details strong { font-weight: 600; }
-
-/* 클라우드 연결점 강조 */
-.cloud-link {
-    margin-top: 12px !important;
-    padding: 10px;
-    background-color: rgba(255, 255, 255, 0.15);
-    border-radius: 8px;
-    font-size: 0.85rem;
-}
-
-/* 접근성: 스킵 링크 */
-.skip-link {
-    position: absolute;
-    top: -40px;
-    left: 0;
-    background: var(--primary-blue);
-    color: white;
-    padding: 8px;
-    z-index: 100;
-}
-.skip-link:focus { top: 0; }
-
-/* About Me 섹션 스타일 */
+/* About Me 섹션 */
 .about-me {
     background-color: var(--card-bg);
     padding: 25px;
     border-radius: 16px;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    width: 100%;
 }
 
 .about-me h2 {
@@ -196,20 +89,22 @@ body {
     margin-bottom: 15px;
     border-bottom: 2px solid var(--primary-blue-light);
     padding-bottom: 10px;
-    display: inline-block;
+    display: block;
 }
 
 .about-me ul {
     list-style: none;
     padding: 0;
+    display: grid;
+    grid-template-columns: 1fr; /* 기본은 세로 1열 */
+    gap: 15px;
 }
 
 .about-me li {
-    margin-bottom: 15px;
     font-size: 0.95rem;
-    line-height: 1.5;
+    line-height: 1.6;
     position: relative;
-    padding-left: 20px;
+    padding-left: 25px;
     color: var(--text-main);
 }
 
@@ -226,4 +121,263 @@ body {
     color: var(--primary-blue);
     display: block;
     margin-bottom: 3px;
+}
+
+/* 타임라인 기본 구조 */
+.timeline {
+    position: relative;
+    padding-left: 20px;
+    width: 100%;
+    max-width: 800px; /* 타임라인 최대 너비 제한 */
+    margin: 0 auto;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 10px;
+    bottom: 10px;
+    width: 2px;
+    background-color: var(--line-color);
+}
+
+.timeline-item { position: relative; margin-bottom: 20px; }
+
+.timeline-marker {
+    position: absolute;
+    left: -20px;
+    top: 24px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--bg-color);
+    border: 2px solid var(--primary-blue);
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.timeline-item:has(.active) .timeline-marker,
+.timeline-marker.active {
+    background-color: var(--primary-blue);
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 4px var(--primary-blue-light);
+}
+
+.timeline-content {
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    padding: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    outline: none;
+}
+
+.timeline-content:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+.timeline-content:focus-visible { outline: 3px solid var(--primary-blue); outline-offset: 2px; }
+
+.timeline-content.active {
+    background-color: var(--primary-blue);
+    color: #ffffff;
+}
+
+.item-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.item-header h3 { font-size: 1.2rem; font-weight: 600; }
+
+.item-header .time {
+    font-size: 0.9rem;
+    color: var(--text-sub);
+    margin-left: auto;
+    margin-right: 15px;
+}
+.timeline-content.active .item-header .time { color: #e2e8f0; }
+
+.arrow { font-size: 0.8rem; transition: transform 0.3s ease; color: var(--text-sub); }
+.timeline-content.active .arrow { color: #ffffff; }
+
+.summary { font-size: 1rem; color: var(--text-sub); transition: color 0.3s ease; }
+.timeline-content.active .summary { color: #f1f5f9; }
+
+.item-details {
+    display: none;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+.timeline-content.active .item-details { border-top: 1px solid rgba(255, 255, 255, 0.3); }
+
+.item-details p { margin-bottom: 10px; }
+.item-details strong { font-weight: 600; }
+
+.cloud-link {
+    margin-top: 15px !important;
+    padding: 12px;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+/* Contact 버튼 */
+.contact-button-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    width: 100%;
+}
+
+.contact-btn {
+    background-color: #51b8a4;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 15px 50px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(81, 184, 164, 0.3);
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.contact-btn:hover, .contact-btn:focus-visible {
+    background-color: #3fa392;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(81, 184, 164, 0.4);
+    outline: none;
+}
+
+/* 모달 창 */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.show { display: flex; opacity: 1; }
+
+.modal-content {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.modal.show .modal-content { transform: translateY(0); }
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-sub);
+}
+
+.modal-content h2 { color: var(--primary-blue); margin-bottom: 10px; }
+.modal-content p { font-size: 0.9rem; color: var(--text-sub); margin-bottom: 20px; }
+
+.contact-links { display: flex; flex-direction: column; gap: 15px; }
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px;
+    background-color: var(--bg-color);
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 600;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.contact-item:hover {
+    background-color: var(--primary-blue-light);
+    color: var(--primary-blue);
+    transform: translateY(-2px);
+}
+
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary-blue);
+    color: white;
+    padding: 8px;
+    z-index: 100;
+    transition: top 0.3s;
+}
+.skip-link:focus { top: 0; }
+
+/* ==========================================
+   💻 큰 모니터 (1200px 이상) - 넓게 펼치기
+   ========================================== */
+@media (min-width: 1024px) {
+    /* PC에서는 About Me 강점들을 3열로 나란히 배치 */
+    .about-me ul {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    /* 타임라인을 조금 더 넓게 */
+    .timeline {
+        max-width: 900px;
+    }
+}
+
+/* ==========================================
+   📱 태블릿 및 모바일 (768px 이하) - 좁게 접기
+   ========================================== */
+@media (max-width: 768px) {
+    .app-container { padding: 30px 15px; }
+    .header h1 { font-size: 2rem; }
+    .about-me ul { grid-template-columns: 1fr; } /* 강점 세로로 */
+    
+    .contact-btn { width: 100%; } /* 모바일에서 버튼 꽉 차게 */
+    .modal-content { width: 95%; padding: 20px; }
+    .contact-item { font-size: 0.9rem; padding: 12px; }
+}
+
+/* ==========================================
+   📱 작은 모바일 (480px 이하) - 최적화
+   ========================================== */
+@media (max-width: 480px) {
+    .header h1 { font-size: 1.6rem; }
+    .timeline-content { padding: 15px; }
+    .item-header h3 { font-size: 1.1rem; }
+}
+
+/* T01-C22: 움직임 최소화 선호 사용자 대응 */
+@media (prefers-reduced-motion: reduce) {
+    .timeline-content, .timeline-marker, .skip-link, .arrow {
+        transition: none !important;
+    }
+    .timeline-content:hover { transform: none; }
 }
