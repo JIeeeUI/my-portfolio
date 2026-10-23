@@ -11,7 +11,19 @@
 
     <div class="app-container">
         
-        <aside class="sidebar-left">
+        <!-- 1. 헤더 (PC에서는 중앙 메인의 일부, 모바일에서는 맨 위) -->
+        <header class="header mobile-top">
+            <p class="date">My Journey to Cloud</p>
+            <h1>Ji Eui Choi / 최지의</h1>
+            <div class="keywords">
+                <span>#Network_Security</span>
+                <span>#Global_Experience</span>
+                <span>#Cloud_Engineer</span>
+            </div>
+        </header>
+
+        <!-- 2. 왼쪽 사이드바 (My Core Strengths) -->
+        <aside class="sidebar-left mobile-second">
             <section class="about-me">
                 <h2>My Core Strengths</h2>
                 <ul>
@@ -31,44 +43,28 @@
             </section>
         </aside>
 
-        <!-- 👉 2. 중앙 메인 컨텐츠 👉 -->
-        <main id="main-content" class="main-content">
-            <!-- 헤더 -->
-            <header class="header">
-                <p class="date">My Journey to Cloud</p>
-                <h1>Ji Eui Choi / 최지의</h1>
-                <div class="keywords">
-                    <span>#Network_Security</span>
-                    <span>#Global_Experience</span>
-                    <span>#Cloud_Engineer</span>
-                </div>
-            </header>
-
-            <!-- 타임라인 -> 카드 그리드로 변경 -->
+        <!-- 3. 메인 컨텐츠 (카드 그리드) -->
+        <main id="main-content" class="main-content mobile-third">
             <div class="card-grid">
-                <!-- 1. 사진영상학과 -->
+                <!-- 카드 1 -->
                 <div class="grid-card">
-                    <div class="card-header">
-                        <h3>사진영상학과</h3>
-                    </div>
+                    <div class="card-header"><h3>사진영상학과</h3></div>
                     <p class="summary">시각적 사고와 사용자 경험의 기초</p>
                     <div class="card-details">
                         <p><strong>배움:</strong> 사람들이 정보를 어떻게 받아들이고 시각적으로 소통하는지에 대한 이해를 바탕으로 기획력을 길렀습니다.</p>
                     </div>
                 </div>
 
-                <!-- 2. 의류회사 재고 관리 -->
+                <!-- 카드 2 -->
                 <div class="grid-card">
-                    <div class="card-header">
-                        <h3>의류회사 재고 관리</h3>
-                    </div>
+                    <div class="card-header"><h3>의류회사 재고 관리</h3></div>
                     <p class="summary">실무 데이터 관리 및 비즈니스 프로세스 이해</p>
                     <div class="card-details">
                         <p><strong>경험:</strong> 실제 비즈니스 현장에서 데이터가 어떻게 흐르고 관리되는지 체득하며, 클라우드 아키텍처 설계의 기초가 되는 데이터 이해도를 높였습니다.</p>
                     </div>
                 </div>
 
-                <!-- 3. 네트워크 보안 엔지니어 -->
+                <!-- 카드 3 (핵심 강조) -->
                 <div class="grid-card highlight">
                     <div class="card-header">
                         <h3>Network Security Engineer</h3>
@@ -82,7 +78,7 @@
                     </div>
                 </div>
 
-                <!-- 4. 호주 워킹홀리데이 -->
+                <!-- 카드 4 -->
                 <div class="grid-card">
                     <div class="card-header">
                         <h3>호주 워킹홀리데이</h3>
@@ -94,7 +90,7 @@
                     </div>
                 </div>
 
-                <!-- 5. 임베디드 SW & AI -->
+                <!-- 카드 5 -->
                 <div class="grid-card">
                     <div class="card-header">
                         <h3>임베디드 SW & AI 학습</h3>
@@ -106,7 +102,7 @@
                     </div>
                 </div>
 
-                <!-- 6. 현재 -->
+                <!-- 카드 6 -->
                 <div class="grid-card">
                     <div class="card-header">
                         <h3>클라우드 엔지니어를 향하여</h3>
@@ -121,8 +117,8 @@
             </div>
         </main>
 
-        <!-- 👉 3. 오른쪽 사이드바: Contact👉 -->
-        <aside class="sidebar-right">
+        <!-- 4. 오른쪽 사이드바 (Contact) -->
+        <aside class="sidebar-right mobile-bottom">
             <section class="contact-section">
                 <h2>Contact</h2>
                 <p>언제든지 편하게 연락해 주세요!</p>
@@ -135,7 +131,5 @@
         </aside>
 
     </div>
-
-    <!-- 스크립트 제거 (더 이상 아코디언 기능 필요 없음) -->
 </body>
 </html>
