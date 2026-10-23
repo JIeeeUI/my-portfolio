@@ -28,18 +28,19 @@ body {
     padding: 40px 20px;
     display: flex;
     gap: 40px;
-    align-items: flex-start; /* 사이드바가 위에서부터 시작하도록 */
+    align-items: flex-start;
 }
 
-/* --- 👈 왼쪽 사이드 바 (고정) 👈 --- */
+/* --- 👈 왼쪽 사이드 바 (PC 고정) 👈 --- */
 .sidebar {
     width: 350px;
-    position: sticky; /* 스크롤을 따라 고정 */
-    top: 40px; /* 화면 상단에서 40px 떨어진 곳에 머무름 */
+    position: sticky;
+    top: 40px;
     flex-shrink: 0;
+    order: 1; /* PC에서는 왼쪽(1번) */
 }
 
-/* About Me (사이드바 내부) */
+/* About Me */
 .about-me {
     background-color: var(--card-bg);
     padding: 30px;
@@ -80,7 +81,6 @@ body {
     font-weight: bold;
 }
 
-/* 제목 스타일 (파란색, 줄바꿈) */
 .strength-title {
     color: var(--primary-blue);
     display: block;
@@ -89,7 +89,6 @@ body {
     font-size: 1rem;
 }
 
-/* 본문 강조 스타일 (기울임+볼드) */
 .about-me li strong em {
     font-style: italic;
     color: #4b5563;
@@ -100,25 +99,13 @@ body {
 .main-content {
     flex: 1;
     min-width: 0;
+    order: 2; /* PC에서는 오른쪽(2번) */
 }
 
 /* 헤더 */
 .header { margin-bottom: 40px; }
 .date { color: var(--text-sub); font-size: 0.9rem; margin-bottom: 5px; font-weight: 600;}
 .header h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 15px; letter-spacing: -1px;}
-
-.target-audience {
-    font-size: 0.95rem;
-    color: var(--text-main);
-    margin-bottom: 20px;
-    background-color: var(--card-bg);
-    display: block;
-    padding: 15px 20px;
-    border-radius: 12px;
-    border-left: 4px solid var(--primary-blue);
-    line-height: 1.6;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
-}
 
 .keywords { display: flex; flex-wrap: wrap; gap: 8px; }
 .keywords span {
@@ -229,7 +216,7 @@ body {
     font-size: 0.9rem;
 }
 
-/* Contact 섹션 (오른쪽 하단) */
+/* Contact 섹션 */
 .contact-section {
     background-color: var(--card-bg);
     padding: 30px;
@@ -287,17 +274,27 @@ body {
 }
 .skip-link:focus { top: 0; }
 
-/* 📱 태블릿 및 모바일 (1024px 이하) - 세로 배치 */
+/* ==========================================
+   📱 태블릿 및 모바일 (1024px 이하) - 세로 배치 및 순서 변경
+   ========================================== */
 @media (max-width: 1024px) {
     .app-container {
-        flex-direction: column; /* 위아래로 배치 */
+        flex-direction: column;
         padding: 30px 20px;
+        gap: 20px;
     }
     
+    /* 👇 모바일에서는 나의 강점(사이드바)이 맨 위로 (order: 1) */
     .sidebar {
         width: 100%;
-        position: static; /* 고정 해제 */
-        margin-bottom: 30px;
+        position: static;
+        order: 1; 
+        margin-bottom: 0; /* gap으로 간격 조절되므로 제거 */
+    }
+
+    /* 👇 모바일에서는 헤더와 타임라인이 두 번째로 (order: 2) */
+    .main-content {
+        order: 2;
     }
 
     .header h1 { font-size: 2.2rem; }
