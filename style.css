@@ -20,10 +20,10 @@ body {
 }
 
 /* ==========================================
-   🖥️ 전체 레이아웃 (PC: 좌우 배치)
+   🖥️ PC 화면 레이아웃 (왼쪽 메인 + 오른쪽 컨택트)
    ========================================== */
 .app-container {
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 40px 20px;
     display: flex;
@@ -31,26 +31,50 @@ body {
     align-items: flex-start;
 }
 
-/* --- 👈 왼쪽 사이드 바 (PC 고정) 👈 --- */
-.sidebar {
-    width: 350px;
-    position: sticky;
-    top: 40px;
-    flex-shrink: 0;
-    order: 1; /* PC에서는 왼쪽(1번) */
+/* --- 👉 메인 컨텐츠 (헤더 + 강점 + 타임라인) 👉 --- */
+.main-content {
+    flex: 1;
+    min-width: 0;
 }
 
-/* About Me */
+/* --- 👉 오른쪽 사이드바 (Contact) 👉 --- */
+.sidebar-right {
+    width: 300px;
+    position: sticky; /* 스크롤 고정 */
+    top: 40px;
+    flex-shrink: 0;
+}
+
+/* ==========================================
+   🎨 스타일링
+   ========================================== */
+/* 헤더 */
+.header { margin-bottom: 30px; }
+.date { color: var(--text-sub); font-size: 0.9rem; margin-bottom: 5px; font-weight: 600;}
+.header h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 15px; letter-spacing: -1px;}
+
+.keywords { display: flex; flex-wrap: wrap; gap: 8px; }
+.keywords span {
+    font-size: 0.85rem;
+    color: var(--primary-blue);
+    background-color: var(--primary-blue-light);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+/* 나의 강점 (About Me) */
 .about-me {
     background-color: var(--card-bg);
-    padding: 30px;
+    padding: 25px;
     border-radius: 20px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.04);
     border-top: 5px solid var(--primary-blue);
+    margin-bottom: 40px; /* 타임라인과의 간격 */
 }
 
 .about-me h2 {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: var(--primary-blue);
     margin-bottom: 20px;
     padding-bottom: 10px;
@@ -61,7 +85,7 @@ body {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
 }
 
 .about-me li {
@@ -95,43 +119,21 @@ body {
     font-weight: 700;
 }
 
-/* --- 👉 오른쪽 메인 컨텐츠 👉 --- */
-.main-content {
-    flex: 1;
-    min-width: 0;
-    order: 2; /* PC에서는 오른쪽(2번) */
-}
-
-/* 헤더 */
-.header { margin-bottom: 40px; }
-.date { color: var(--text-sub); font-size: 0.9rem; margin-bottom: 5px; font-weight: 600;}
-.header h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 15px; letter-spacing: -1px;}
-
-.keywords { display: flex; flex-wrap: wrap; gap: 8px; }
-.keywords span {
-    font-size: 0.85rem;
-    color: var(--primary-blue);
-    background-color: var(--primary-blue-light);
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-weight: 600;
-}
-
 /* 타임라인 */
-.timeline { position: relative; padding-left: 20px; margin-bottom: 40px;}
+.timeline { position: relative; padding-left: 20px; }
 
 .timeline::before {
     content: '';
     position: absolute;
     left: 4px;
     top: 25px;
-    bottom: 30px;
+    bottom: 25px; /* 👈 수정: 선이 마지막 동그라미 중앙에서 멈추도록 조정 */
     width: 2px;
     background-color: var(--line-color);
     z-index: 1;
 }
 
-.timeline-item { position: relative; margin-bottom: 25px; }
+.timeline-item { position: relative; margin-bottom: 20px; }
 
 .timeline-marker {
     position: absolute;
@@ -155,7 +157,7 @@ body {
 .timeline-content {
     background-color: var(--card-bg);
     border-radius: 16px;
-    padding: 25px;
+    padding: 20px;
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 2px 10px rgba(0,0,0,0.04);
@@ -178,10 +180,10 @@ body {
     margin-bottom: 10px;
 }
 
-.item-header h3 { font-size: 1.25rem; font-weight: 700; }
+.item-header h3 { font-size: 1.15rem; font-weight: 700; }
 
 .item-header .time {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--text-sub);
     margin-left: auto;
     margin-right: 15px;
@@ -192,65 +194,54 @@ body {
 .arrow { font-size: 0.9rem; transition: transform 0.3s ease; color: var(--text-sub); }
 .timeline-content.active .arrow { color: #ffffff; }
 
-.summary { font-size: 1rem; color: var(--text-sub); transition: color 0.3s ease; }
+.summary { font-size: 0.95rem; color: var(--text-sub); transition: color 0.3s ease; }
 .timeline-content.active .summary { color: #eff6ff; }
 
 .item-details {
     display: none;
-    margin-top: 20px;
-    padding-top: 20px;
+    margin-top: 15px;
+    padding-top: 15px;
     border-top: 1px solid #eee;
-    font-size: 0.95rem;
-    line-height: 1.7;
+    font-size: 0.9rem;
+    line-height: 1.6;
 }
 .timeline-content.active .item-details { border-top: 1px solid rgba(255, 255, 255, 0.2); }
 
-.item-details p { margin-bottom: 12px; }
+.item-details p { margin-bottom: 10px; }
 .item-details strong { font-weight: 700; }
 
 .cloud-link {
-    margin-top: 20px !important;
-    padding: 15px;
+    margin-top: 15px !important;
+    padding: 12px;
     background-color: rgba(255, 255, 255, 0.15);
-    border-radius: 10px;
-    font-size: 0.9rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
 }
 
-/* Contact 섹션 */
+/* Contact 카드 */
 .contact-section {
     background-color: var(--card-bg);
-    padding: 30px;
+    padding: 25px;
     border-radius: 20px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    border-top: 5px solid #51b8a4;
 }
 
-.contact-section h2 {
-    font-size: 1.3rem;
-    color: var(--text-main);
-    margin-bottom: 8px;
-}
+.contact-section h2 { font-size: 1.2rem; color: var(--text-main); margin-bottom: 8px; }
+.contact-section p { font-size: 0.85rem; color: var(--text-sub); margin-bottom: 20px; }
 
-.contact-section p {
-    font-size: 0.95rem;
-    color: var(--text-sub);
-    margin-bottom: 20px;
-}
-
-.contact-links {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
+.contact-links { display: flex; flex-direction: column; gap: 10px; }
 
 .contact-links a {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 15px;
+    gap: 8px;
+    padding: 12px;
     background-color: var(--bg-color);
-    border-radius: 12px;
+    border-radius: 10px;
     text-decoration: none;
     color: var(--text-main);
+    font-size: 0.85rem;
     font-weight: 600;
     transition: all 0.2s;
 }
@@ -258,7 +249,7 @@ body {
 .contact-links a:hover {
     background-color: var(--primary-blue-light);
     color: var(--primary-blue);
-    transform: translateX(5px);
+    transform: translateX(3px);
 }
 
 /* 접근성: 스킵 링크 */
@@ -275,42 +266,59 @@ body {
 .skip-link:focus { top: 0; }
 
 /* ==========================================
-   📱 태블릿 및 모바일 (1024px 이하) - 세로 배치 및 순서 변경
+   📱 태블릿 및 모바일 (1024px 이하) - 순서 변경!
    ========================================== */
 @media (max-width: 1024px) {
     .app-container {
-        flex-direction: column;
+        flex-direction: column; /* 1열로 무너짐 */
         padding: 30px 20px;
         gap: 20px;
     }
+
+    /* 👇 좁은 화면에서 순서를 강제로 지정합니다 👇 */
     
-    /* 👇 모바일에서는 나의 강점(사이드바)이 맨 위로 (order: 1) */
-    .sidebar {
+    /* 1. 헤더가 가장 위로 */
+    .header {
+        order: 1;
+        width: 100%;
+    }
+
+    /* 2. 나의 강점이 두 번째로 (타임라인 위로) */
+    .about-me {
+        order: 2;
+        width: 100%;
+        margin-bottom: 10px; /* 간격 조정 */
+    }
+
+    /* 3. 타임라인이 세 번째로 */
+    .timeline {
+        order: 3;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    /* 4. 오른쪽 Contact이 맨 마지막으로 */
+    .sidebar-right {
         width: 100%;
         position: static;
-        order: 1; 
-        margin-bottom: 0; /* gap으로 간격 조절되므로 제거 */
+        order: 4; 
     }
 
-    /* 👇 모바일에서는 헤더와 타임라인이 두 번째로 (order: 2) */
+    /* 메인 컨텐츠 묶음이 순서에 방해되지 않도록 설정 */
     .main-content {
-        order: 2;
+        display: contents; /* main 태그의 레이아웃을 무시하고 자식 요소들이 order를 따르게 함 */
     }
-
-    .header h1 { font-size: 2.2rem; }
 }
 
 @media (max-width: 600px) {
     .app-container { padding: 20px 15px; }
-    .header h1 { font-size: 1.8rem; }
-    
+    .header h1 { font-size: 2rem; }
     .about-me, .contact-section { padding: 20px; }
-    .timeline-content { padding: 20px; }
-    .item-header h3 { font-size: 1.1rem; }
-    .contact-links a { font-size: 0.9rem; }
+    .timeline-content { padding: 15px; }
+    .item-header h3 { font-size: 1.05rem; }
 }
 
-/* T01-C22: 움직임 최소화 선호 사용자 대응 */
+/* 움직임 최소화 선호 사용자 대응 */
 @media (prefers-reduced-motion: reduce) {
     .timeline-content, .timeline-marker, .skip-link, .arrow {
         transition: none !important;

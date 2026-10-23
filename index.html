@@ -11,8 +11,21 @@
 
     <div class="app-container">
         
-        <!-- 👈 왼쪽 사이드바: PC에서 고정될 영역 👈 -->
-        <aside class="sidebar">
+        <!-- 👉 메인 컨텐츠 (헤더 + 나의 강점 + 타임라인) 👉 -->
+        <main id="main-content" class="main-content">
+            
+            <!-- 1. 헤더 -->
+            <header class="header">
+                <p class="date">My Journey to Cloud</p>
+                <h1>Ji Eui Choi / 최지의</h1>
+                <div class="keywords">
+                    <span>#Network_Security</span>
+                    <span>#Global_Experience</span>
+                    <span>#Cloud_Engineer</span>
+                </div>
+            </header>
+
+            <!-- 2. 나의 강점 (타임라인 위로 이동) -->
             <section class="about-me">
                 <h2>My Core Strengths</h2>
                 <ul>
@@ -30,23 +43,8 @@
                     </li>
                 </ul>
             </section>
-        </aside>
 
-        <!-- 👉 오른쪽 메인 컨텐츠 👉 -->
-        <main id="main-content" class="main-content">
-            
-            <!-- 헤더 -->
-            <header class="header">
-                <p class="date">My Journey to Cloud</p>
-                <h1>Ji Eui Choi / 최지의</h1>
-                <div class="keywords">
-                    <span>#Network_Security</span>
-                    <span>#Global_Experience</span>
-                    <span>#Cloud_Engineer</span>
-                </div>
-            </header>
-
-            <!-- 타임라인 -->
+            <!-- 3. 타임라인 -->
             <div class="timeline">
                 <!-- 1. 사진영상학과 -->
                 <div class="timeline-item">
@@ -92,7 +90,6 @@
                             <p><strong>상황:</strong> 기업의 보안 정책을 유지해야 하는 상황</p>
                             <p><strong>행동:</strong> 복잡한 네트워크 흐름 분석 및 취약점 사전 차단 프로세스 구축</p>
                             <p><strong>결과:</strong> 안정적인 네트워크 환경 유지 및 보안 사고 방지</p>
-                            <p class="cloud-link"><strong>☁️ 클라우드 연결:</strong> 온프레미스 보안 경험을 바탕으로 클라우드의 VPC, 보안 그룹, IAM 설정에 대한 높은 이해도를 갖춤.</p>
                         </div>
                     </div>
                 </div>
@@ -146,8 +143,10 @@
                     </div>
                 </div>
             </div>
+        </main>
 
-            <!-- Contact 섹션 -->
+        <!-- 👉 오른쪽 사이드바: Contact (스크롤 고정) 👉 -->
+        <aside class="sidebar-right">
             <section class="contact-section">
                 <h2>Contact</h2>
                 <p>언제든지 편하게 연락해 주세요!</p>
@@ -157,8 +156,8 @@
                     <a href="https://github.com/JIeeeUI/my-portfolio" target="_blank" rel="noopener noreferrer">💻 github.com/JIeeeUI/my-portfolio</a>
                 </div>
             </section>
+        </aside>
 
-        </main>
     </div>
 
     <script src="script.js"></script>
